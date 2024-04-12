@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <title>Weather forecast cities</title>
+      </head>
+      
+
+
+      <body class="flex-column min-100-vh">
+        <header class="hero" style="background-color: blue;">
+          <h1 class="app-title" style="text-align:center;"><i class="fab fa-github" ></i>Weather Dashboard</h1>
+          
+        </header>
+      
+      
+        <main class="flex-row justify-space-between">
+          <div class="col-12 col-md-4">
+      
+            <div class="card">
+              <h3 class="card-header text-uppercase">Search for a City:</h3>
+              <form id="user-form" class="card-body">
+                <label class="form-label" for="city">City</label>
+                <input name="cityform" id="cities" type="text" autofocus="true" class="form-input" />
+                <button type="submit" class="btn flex-column" width="fit-content">Search</button>
+              </form>
+            </div>
+            <div class="card">
+                <div id="citybuttons"  width="fit-content" class="btn flex-column">
+
+                  <button id="city" type="submit" class="btn flex-column" width="fit-content">Atlanta</button>
+                  <button id="city" type="submit"  class="btn flex-column" width="fit-content">New York</button>
+                  <button id="city" type="submit"  class="btn flex-column" width="fit-content">Los Angeles</button>
+                  <button id="city" type="submit"  class="btn flex-column" width="fit-content">Denver</button>
+                  <button id="city" type="submit"  class="btn flex-column" width="fit-content">Miami</button>
+                  <button id="city" type="submit"  class="btn flex-column" width="fit-content">Seattle</button>
+                  <button id="city" type="submit"  class="btn flex-column" width="fit-content">San Francisco</button>
+                  <button id="city" type="submit"  class="btn flex-column" width="fit-content">Austin</button>
+                </div>
+              </div>
+        
+          </div>
+      
+          <div class="col-12 col-md-8">
+            <div class="sub text-align" style="border: grey; border-width: 10px; border-style: solid;">
+
+            
+                <h2 class="subtitle" name="selectedCity"><span id="date"></span></h2>
+                <div class="label" > </div>
+                <div> <span id="tempToday"></span>&deg; </div>
+                <div> <span id="windToday"></span> </div>
+                <div> <span id="humidityToday"></span>&percnt;</div>
+            </div>
+            <div id="repos-container-fluid" ></div>
+            <div class="row" style="--bs-gutter-x: 1;" >
+                <div class="col-md-4 " id ="Tommorow" style="background-color: navy; color: white;" max-width="20%">
+                    Tommorow
+                    <div> <span id="tempTommorow"> </span>&deg;</div> 
+                    <div> <span id="windTommorow"> </span> </div>
+                    <div> <span id="humidityTommorow"> </span>&percnt;</div>
+
+
+
+                </div>
+                <div class="col-md-4 " id ="Day after" style="background-color: navy; color: white;" max-width="20%">
+                    Day after
+
+                    <div> <span id="tempDayafter"> </span>&deg;</div> 
+                    <div> <span id="windDayafter"> </span> </div>
+                    <div> <span id="humidityDayafter"> </span>&percnt;</div>
+                </div>
+                <div class="col-md-4 " id ="Days after" style="background-color: navy; color: white;" max-width="20%">
+                    Days after
+                    
+                    <div><span id="tempDaysafter"> </span>&deg; </div>
+                    <div><span id="windDaysafter"> </span> </div>
+                    <div><span id="humidityDaysafter"> </span>&percnt; </div>
+
+                </div>
+                <div class="col-md-4 " id ="Days after days" style="background-color: navy; color: white;" max-width="20%">
+                    Days after days
+                    <div><span id="tempDaysafterDays"> </span>&deg; </div>
+                    <div><span id="windDaysafterDays"> </span></div>
+                    <div><span id="humidityDaysafterDays"></span>&percnt; </div>
+
+                </div>
+            </div>
+          </div>
+        </main>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+        <script src="./assets/js/js.js"></script>
+      </body>
+
+
+
+
+</html>
