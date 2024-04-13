@@ -27,7 +27,7 @@ const getTodaysInfo = async (city) =>{
 if (city){
 
 
-let selectCity = document.getElementsByName("selectedCity")
+let selectCity = document.getElementById("selectedCity")
 selectCity.innerHTML = city
 let temp = document.getElementById("tempToday"); 
 temp.innerHTML = "Temp: " + "75"
@@ -128,7 +128,7 @@ const getReposByCity = async (city) => {
     }else {
         console.log("Invalid ")
     }
-
+    return city;
     // return response.data.items
     //Function to get all urls from the response data
     // let repos = response.data.items.forEach(item => { console.log(item.url)} )
@@ -170,9 +170,7 @@ const getReposByCity = async (city) => {
 
     if (city) {
         getReposByCity(city)
-        getResults()
-
-
+        getResults(city)
 
     }else{
         console.log("Invalid city. Enter correct city from the list")
@@ -188,12 +186,12 @@ const getReposByCity = async (city) => {
 
     if (city.textContent) {
         getReposByCity(city.textContent)
-        getResults()
+        getResults(city.textContent)
     }
 
   })
 //---will have to be inside the function getReposByCity()---
-const getResults = () => {
+const getResults = (city) => {
     getDate()
     getTodaysInfo(city)
     getTommorowsInfo()
@@ -205,5 +203,5 @@ const getResults = () => {
 if(city){
 
 
-getResults()
+getResults(city)
 }
