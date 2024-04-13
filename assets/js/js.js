@@ -30,11 +30,15 @@ repos = response.data.forecast
 maxTemp = repos.forecastday[i].day.maxtemp_f
 maxWind = repos.forecastday[i].day.maxwind_mph
 maxHumidity = repos.forecastday[i].day.avghumidity
+icon1 = repos.forecastday[i].day.condition.icon
+iconurl = "https:" + icon1
 if (city){
 
 
 let selectCity = document.getElementById("selectedCity")
-selectCity.innerHTML = city + " (" + newDate+ ")"
+selectCity.innerHTML = city + " (" + newDate+ ")" +
+`       <img style="display: block;-webkit-user-select: none;transition: background-color 300ms;"  id="wicon" src='${iconurl}' alt="Weather icon">
+`
 let temp = document.getElementById("tempToday"); 
 temp.innerHTML = "Temp: " + maxTemp 
 let wind = document.getElementById("windToday"); 
@@ -65,7 +69,7 @@ repoContainerEl.innerHTML = ``;
             `
         <div class="col-md-4 " id ="Days after days" style="background-color: navy; color: white;" max-width="20%">
         ${displayDate}
-        <div id="icon"><img style="display: block;-webkit-user-select: none;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;"  id="wicon" src='${iconurl}' alt="Weather icon"></div>
+        <div id="icon"><img style="display: block;-webkit-user-select: none;transition: background-color 300ms;"  id="wicon" src='${iconurl}' alt="Weather icon"></div>
         <div><span id="tempDaysafterDays">${"Temp: " + maxTemp} </span>&deg;${"F"} </div>
         <div><span id="windDaysafterDays"> ${"Wind: " + maxWind + " MPH"}</span></div>
         <div><span id="humidityDaysafterDays">${"Humidity: " + maxHumidity} </span>&percnt; </div>
