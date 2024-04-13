@@ -21,8 +21,14 @@ const getDate = () => {
 
 const getTodaysInfo = async (city) =>{
     ///get the Weather apis response
-// const response = await axios.get(`https://www.googleapis.com/youtube/v3/videos?key=AIzaSyD7neHHqfKylKN206rx0tnSRa5uq1nvmoY&part=snippet&maxResults=30&chart=${topic}&videoEmbeddable=true`)
-// console.log(response.data.items)
+let key = "32d55c7fa9484c3d99a150734241304"
+const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city},USA&days=5&aqi=no&alerts=no?`)
+console.log(response.data.forecast)
+let i= 0;
+repos = response.data.forecast
+maxTemp = repos.forecastday[i].day.maxtemp_f
+maxWind = repos.forecastday[i].day.maxwind_mph
+maxHumidity = repos.forecastday[i].day.avghumidity
 // let repos = response.data.items
 if (city){
 
@@ -30,65 +36,41 @@ if (city){
 let selectCity = document.getElementById("selectedCity")
 selectCity.innerHTML = city
 let temp = document.getElementById("tempToday"); 
-temp.innerHTML = "Temp: " + "75"
+temp.innerHTML = "Temp: " + maxTemp
 let wind = document.getElementById("windToday"); 
-wind.innerHTML = "Wind: " + "7 MPH"
+wind.innerHTML = "Wind: " + maxWind +  " MPH"
 
 let humidity = document.getElementById("humidityToday"); 
-humidity.innerHTML = "Humidity: " + "44"
+humidity.innerHTML = "Humidity: " + maxHumidity
 
+
+
+repoContainerEl.innerHTML = ``;
+j = 1;
+
+    for(i=1;i<repos.forecastday.length ;i++)
+    { 
+        displayDate = repos.forecastday[i].date
+        maxTemp = repos.forecastday[i].day.maxtemp_f
+        maxWind = repos.forecastday[i].day.maxwind_mph
+        maxHumidity = repos.forecastday[i].day.avghumidity 
+        repoContainerEl.innerHTML += 
+        
+            `
+        <div class="col-md-4 " id ="Days after days" style="background-color: navy; color: white;" max-width="20%">
+        ${displayDate}
+        <div><span id="tempDaysafterDays">${"Temp: " + maxTemp} </span>&deg; </div>
+        <div><span id="windDaysafterDays"> ${"MaxWind: " + maxWind}</span></div>
+        <div><span id="humidityDaysafterDays">${"MaxWind: " + maxHumidity} </span>&percnt; </div>
+
+        </div>
+        `;
+    
+    }
 }
 }
 
 
-const getTommorowsInfo = () =>{
-
-
-    let temp = document.getElementById("tempTommorow"); 
-    temp.innerHTML = "Temp: " + "76"
-    let wind= document.getElementById("windTommorow"); 
-    wind.innerHTML = "Wind: " + "8 MPH"
-    
-    let humidity = document.getElementById("humidityTommorow"); 
-    humidity.innerHTML = "Humidity: " + "45"
-    }
-
-
-
-const getDayafterInfo = () =>{
-
-
-    let temp = document.getElementById("tempDayafter"); 
-    temp.innerHTML = "Temp: " + "77"
-    let wind = document.getElementById("windDayafter"); 
-    wind.innerHTML = "Wind: " + "9 MPH"
-    
-    let humidity = document.getElementById("humidityDayafter"); 
-    humidity.innerHTML = "Humidity: " + "46"
-    }
-const getDaysafterInfo = () =>{
-
-
-    let temp = document.getElementById("tempDaysafter"); 
-    temp.innerHTML = "Temp: " + "78"
-    let wind = document.getElementById("windDaysafter"); 
-    wind.innerHTML = "Wind: " + "10 MPH"
-    
-    let humidity = document.getElementById("humidityDaysafter"); 
-    humidity.innerHTML = "Humidity: " + "47"
-    }
-
-const getDaysafterDaysInfo = () =>{
-
-
-    let temp = document.getElementById("tempDaysafterDays"); 
-    temp.innerHTML = "Temp: " + "75"
-    let wind = document.getElementById("windDaysafterDays"); 
-    wind.innerHTML = "Wind: " + "7 MPH"
-    
-    let humidity = document.getElementById("humidityDaysafterDays"); 
-    humidity.innerHTML = "Humidity: " + "44"
-    }
 const getReposByCity = async (city) => {
 
 
@@ -152,7 +134,7 @@ const getReposByCity = async (city) => {
           <div class="list-item flex-row justify-space-between align-center" data-link="${url}">
               <span>${repo.snippet.title}</span>
               <span class="flex-row align-center">
-                  <i class="fab fa-youtube"></i>
+                  <j class="fab fa-youtube"></j>
               </span>
               <img src="${repo.snippet.thumbnails.medium.url}"
               <a href=${url}>MyLink</a>
@@ -167,12 +149,13 @@ const getReposByCity = async (city) => {
     event.preventDefault();
     const city = nameInputEl.value;
     console.log(city + ` : search is clicked.`)
-
-    if (city) {
+    mylist = ["Atlanta", "New York", "Los Angeles", "Denver", "Miami", "Seattle", "San Francisco", "Austin"]
+    if (mylist.includes(city)) {
         getReposByCity(city)
         getResults(city)
 
     }else{
+        alert("Please enter a city from the list of cities below...")
         console.log("Invalid city. Enter correct city from the list")
     }
 
@@ -194,14 +177,11 @@ const getReposByCity = async (city) => {
 const getResults = (city) => {
     getDate()
     getTodaysInfo(city)
-    getTommorowsInfo()
-    getDayafterInfo()
-    getDaysafterInfo()
-    getDaysafterDaysInfo()
+
 
 }
-if(city){
+// if(city){
 
 
-getResults(city)
-}
+// getResults(city)
+// }

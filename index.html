@@ -14,7 +14,7 @@
 
       <body class="flex-column min-100-vh">
         <header class="hero" style="background-color: blue;">
-          <h1 class="app-title" style="text-align:center;"><i class="fab fa-github" ></i>Weather Dashboard</h1>
+          <h1 class="app-title" style="text-align:center; color: white;"><i class="fab fa-github" ></i>Weather Dashboard</h1>
           
         </header>
       
@@ -25,22 +25,22 @@
             <div class="card">
               <h3 class="card-header text-uppercase">Search for a City:</h3>
               <form id="user-form" class="card-body">
-                <label class="form-label" for="city">City</label>
-                <input name="cityform" id="cities" type="text" autofocus="true" class="form-input" />
+                <label class="form-label" for="city"></label>
+                <input name="cityform" id="cities" type="text" autofocus="true" class="form-input" placeholder="my City"/>
                 <button type="submit" class="btn flex-column" width="fit-content">Search</button>
               </form>
             </div>
             <div class="card">
-                <div id="citybuttons"  width="fit-content" class="btn flex-column">
+                <div id="citybuttons"   class="btn flex-column">
 
-                  <button id="city" type="submit" class="btn flex-column" width="fit-content">Atlanta</button>
-                  <button id="city" type="submit"  class="btn flex-column" width="fit-content">New York</button>
-                  <button id="city" type="submit"  class="btn flex-column" width="fit-content">Los Angeles</button>
-                  <button id="city" type="submit"  class="btn flex-column" width="fit-content">Denver</button>
-                  <button id="city" type="submit"  class="btn flex-column" width="fit-content">Miami</button>
-                  <button id="city" type="submit"  class="btn flex-column" width="fit-content">Seattle</button>
-                  <button id="city" type="submit"  class="btn flex-column" width="fit-content">San Francisco</button>
-                  <button id="city" type="submit"  class="btn flex-column" width="fit-content">Austin</button>
+                  <button id="city" type="submit" class="btn flex-column" >Atlanta</button>
+                  <button id="city" type="submit"  class="btn flex-column" >New York</button>
+                  <button id="city" type="submit"  class="btn flex-column" >Los Angeles</button>
+                  <button id="city" type="submit"  class="btn flex-column" >Denver</button>
+                  <button id="city" type="submit"  class="btn flex-column" >Miami</button>
+                  <button id="city" type="submit"  class="btn flex-column" >Seattle</button>
+                  <button id="city" type="submit"  class="btn flex-column" >San Francisco</button>
+                  <button id="city" type="submit"  class="btn flex-column" >Austin</button>
                 </div>
               </div>
         
@@ -60,9 +60,9 @@
                 <div> <span id="windToday"></span> </div>
                 <div> <span id="humidityToday"></span>&percnt;</div>
             </div>
-            <div id="repos-container-fluid" ></div>
-            <div class="row" style="--bs-gutter-x: 1;" >
-                <div class="col-md-4 " id ="Tommorow" style="background-color: navy; color: white;" max-width="20%">
+            <!-- <div id="repos-container" ></div> -->
+            <div class="row" id="repos-container" >
+                <!-- <div class="col-md-4 " id ="Tommorow" style="background-color: navy; color: white;" max-width="20%">
                     Tommorow
                     <div> <span id="tempTommorow"> </span>&deg;</div> 
                     <div> <span id="windTommorow"> </span> </div>
@@ -92,7 +92,7 @@
                     <div><span id="windDaysafterDays"> </span></div>
                     <div><span id="humidityDaysafterDays"></span>&percnt; </div>
 
-                </div>
+                </div> -->
             </div>
           </div>
         </main>
