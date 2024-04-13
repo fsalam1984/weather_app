@@ -13,13 +13,14 @@ const getDate = () => {
     let yyyy = date.getFullYear(); 
     let newDate = mm + "/" + dd + "/"  +yyyy; 
     let p = document.getElementById("date"); 
-    p.innerHTML = newDate; 
-
+    // p.innerHTML = newDate; 
+  
+    return newDate;
 }
 
 
 
-const getTodaysInfo = async (city) =>{
+const getForecastInfo = async (city, newDate) =>{
     ///get the Weather apis response
 let key = "32d55c7fa9484c3d99a150734241304"
 const response = await axios.get(`https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${city},USA&days=5&aqi=no&alerts=no?`)
@@ -29,14 +30,13 @@ repos = response.data.forecast
 maxTemp = repos.forecastday[i].day.maxtemp_f
 maxWind = repos.forecastday[i].day.maxwind_mph
 maxHumidity = repos.forecastday[i].day.avghumidity
-// let repos = response.data.items
 if (city){
 
 
 let selectCity = document.getElementById("selectedCity")
-selectCity.innerHTML = city
+selectCity.innerHTML = city + " (" + newDate+ ")"
 let temp = document.getElementById("tempToday"); 
-temp.innerHTML = "Temp: " + maxTemp
+temp.innerHTML = "Temp: " + maxTemp 
 let wind = document.getElementById("windToday"); 
 wind.innerHTML = "Wind: " + maxWind +  " MPH"
 
@@ -46,11 +46,17 @@ humidity.innerHTML = "Humidity: " + maxHumidity
 
 
 repoContainerEl.innerHTML = ``;
-j = 1;
+
 
     for(i=1;i<repos.forecastday.length ;i++)
     { 
         displayDate = repos.forecastday[i].date
+        displayDate1 = displayDate.split("-")
+        displayDate2 = displayDate1[1] + "/" + displayDate1[2] + "/" + displayDate1[0]
+        displayDate = displayDate2
+        icon1 = repos.forecastday[i].day.condition.icon
+        iconurl = "https:" + icon1
+
         maxTemp = repos.forecastday[i].day.maxtemp_f
         maxWind = repos.forecastday[i].day.maxwind_mph
         maxHumidity = repos.forecastday[i].day.avghumidity 
@@ -59,9 +65,10 @@ j = 1;
             `
         <div class="col-md-4 " id ="Days after days" style="background-color: navy; color: white;" max-width="20%">
         ${displayDate}
-        <div><span id="tempDaysafterDays">${"Temp: " + maxTemp} </span>&deg; </div>
-        <div><span id="windDaysafterDays"> ${"MaxWind: " + maxWind}</span></div>
-        <div><span id="humidityDaysafterDays">${"MaxWind: " + maxHumidity} </span>&percnt; </div>
+        <div id="icon"><img style="display: block;-webkit-user-select: none;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;"  id="wicon" src='${iconurl}' alt="Weather icon"></div>
+        <div><span id="tempDaysafterDays">${"Temp: " + maxTemp} </span>&deg;${"F"} </div>
+        <div><span id="windDaysafterDays"> ${"Wind: " + maxWind + " MPH"}</span></div>
+        <div><span id="humidityDaysafterDays">${"Humidity: " + maxHumidity} </span>&percnt; </div>
 
         </div>
         `;
@@ -176,12 +183,7 @@ const getReposByCity = async (city) => {
 //---will have to be inside the function getReposByCity()---
 const getResults = (city) => {
     getDate()
-    getTodaysInfo(city)
+    getForecastInfo(city, getDate())
 
 
 }
-// if(city){
-
-
-// getResults(city)
-// }
